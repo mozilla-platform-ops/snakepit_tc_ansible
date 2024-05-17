@@ -2,32 +2,31 @@
 
 [[package]]
 name = "ansible"
-version = "8.7.0"
+version = "9.5.1"
 description = "Radically simple IT automation"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 files = [
-    {file = "ansible-8.7.0-py3-none-any.whl", hash = "sha256:fa7d3bc2dfdb0ab031df645814ff86b15cb5ec041bfbee4041f795abfa5646ca"},
-    {file = "ansible-8.7.0.tar.gz", hash = "sha256:3a5ca5152e4547d590e40b542d76b18dbbe2b36da4edd00a13a7c51a374ff737"},
+    {file = "ansible-9.5.1-py3-none-any.whl", hash = "sha256:aed2f4208a75836a27c13555ec5d8d942fe3b089a8b1fc44e8234fadd9e649fd"},
+    {file = "ansible-9.5.1.tar.gz", hash = "sha256:3c278bc9642b97fc953b2ba05b99cd80801e75bf3567dfaa1cb5131fe0ec1ecd"},
 ]
 
 [package.dependencies]
-ansible-core = ">=2.15.7,<2.16.0"
+ansible-core = ">=2.16.6,<2.17.0"
 
 [[package]]
 name = "ansible-core"
-version = "2.15.11"
+version = "2.16.6"
 description = "Radically simple IT automation"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 files = [
-    {file = "ansible_core-2.15.11-py3-none-any.whl", hash = "sha256:8368f64e6596f009ddf308eab8ac32ae1e2642ec5c0d4c03366e673de14f144c"},
-    {file = "ansible_core-2.15.11.tar.gz", hash = "sha256:b7761454c923f63a3d1fcac97b14e378bcc9a8518c3dde07f3ec0988c4667a9d"},
+    {file = "ansible_core-2.16.6-py3-none-any.whl", hash = "sha256:f9dea5044a86fd95cc27099f4f5c3ae9beb23acf7c3b6331455726c47825922b"},
+    {file = "ansible_core-2.16.6.tar.gz", hash = "sha256:111e55d358c2297ec0ce03ba98e6c5ce95947fdf50d878215eb8c183d0c275e4"},
 ]
 
 [package.dependencies]
 cryptography = "*"
-importlib-resources = {version = ">=5.0,<5.1", markers = "python_version < \"3.10\""}
 jinja2 = ">=3.0.0"
 packaging = "*"
 PyYAML = ">=5.1"
@@ -344,21 +343,6 @@ files = [
 ]
 
 [[package]]
-name = "importlib-resources"
-version = "5.0.7"
-description = "Read resources from Python packages"
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "importlib_resources-5.0.7-py3-none-any.whl", hash = "sha256:2238159eb743bd85304a16e0536048b3e991c531d1cd51c4a834d1ccf2829057"},
-    {file = "importlib_resources-5.0.7.tar.gz", hash = "sha256:4df460394562b4581bb4e4087ad9447bd433148fba44241754ec3152499f1d1b"},
-]
-
-[package.extras]
-docs = ["jaraco.packaging (>=8.2)", "rst.linker (>=1.9)", "sphinx"]
-testing = ["pytest (>=3.5,!=3.7.3)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=1.2.3)", "pytest-cov", "pytest-enabler", "pytest-flake8", "pytest-mypy"]
-
-[[package]]
 name = "jinja2"
 version = "3.1.4"
 description = "A very fast and expressive template engine."
@@ -667,5 +651,5 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.9"
-content-hash = "c577ce9a27b556d3cd10e2e9ac3658935619dfd25bd6e7242c96c98a3209c2ec"
+python-versions = "^3.10"
+content-hash = "2727f9d68b394e1112db6ea9dd984fbea79090a90756e91f2441aea27cc66399"

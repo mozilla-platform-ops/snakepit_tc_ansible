@@ -8,7 +8,7 @@ package-mode = false
 
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 # max we can run on mlchead with it's old python3.6
 # ansible = "^4.10"
 ansible = "*"
