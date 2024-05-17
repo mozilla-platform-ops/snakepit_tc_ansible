@@ -1,0 +1,9 @@
+---
+- hosts: workers
+  vars:
+    #blah_disabled: false
+  remote_user: root
+  # become: true
+  # become_user: root
+  roles:
+    - taskcluster_worker

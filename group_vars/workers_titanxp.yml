@@ -1,0 +1,5 @@
+---
+taskcluster_worker_worker_type: 'snakepit-titanxp'
+taskcluster_worker_client_id: 'project/releng/generic-worker/snakepit-titanxp'
+# from the secrets.yml file
+taskcluster_worker_access_token: '{{ titan_token }}'

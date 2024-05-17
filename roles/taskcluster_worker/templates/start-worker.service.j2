@@ -1,0 +1,19 @@
+[Unit]
+Description=run taskcluster's start-worker
+After=network.target
+Wants=network-online.target
+
+[Service]
+Restart=always
+Type=simple
+ExecStart=/usr/local/bin/start-worker /etc/generic-worker/start-worker-config
+User=slurm
+Group=slurm
+Environment="https_proxy=http://192.168.1.1:3128/"
+Environment="http_proxy=http://192.168.1.1:3128/"
+Environment="no_proxy=192.168.1.1"
+Environment="ftp_proxy=ftp://192.168.1.1:3128/"
+WorkingDirectory={{ taskcluster_worker_root_dir }}
+
+[Install]
+WantedBy=multi-user.target

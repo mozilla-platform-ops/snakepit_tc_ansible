@@ -1,0 +1,149 @@
+---
+
+- debug:
+    msg: "Hi there."
+
+- name: include secret vars
+  include_vars: secrets.yml
+
+# place binaries
+- name: transfer g-w
+  ansible.builtin.copy:
+    src: generic-worker-insecure-linux-amd64-v64.2.7
+    dest: '/usr/local/bin/generic-worker'
+    mode: '0755'
+    owner: root
+    group: root
+  become: true
+
+- name: transfer livelog
+  ansible.builtin.copy:
+    src: livelog-linux-amd64-v64.2.7
+    dest: '/usr/local/bin/livelog'
+    mode: '0755'
+    owner: root
+    group: root
+  become: true
+
+- name: transfer start-worker
+  ansible.builtin.copy:
+    src: start-worker-linux-amd64-v64.2.7
+    dest: '/usr/local/bin/start-worker'
+    mode: '0755'
+    owner: root
+    group: root
+  become: true  
+
+- name: transfer taskcluster-proxy
+  ansible.builtin.copy:
+    src: taskcluster-proxy-linux-amd64-v64.2.7
+    dest: '/usr/local/bin/taskcluster-proxy'
+    mode: '0755'
+    owner: root
+    group: root
+  become: true 
+
+# create g-w directories (root owned, slurm readable)
+- name: create g-w directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0750'
+    owner: root
+    group: slurm
+  become: true
+  with_items:
+    - /etc/generic-worker
+
+# create g-w work directories
+- name: create g-w work directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0700'
+    owner: slurm
+    group: slurm
+  become: true
+  with_items:
+    - /var/local/generic-worker
+    - "{{ taskcluster_worker_root_dir}}"
+    - "{{ taskcluster_worker_caches_dir }}"
+    - "{{ taskcluster_worker_tasks_dir }}"
+
+# generate key
+# /usr/local/bin/generic-worker new-ed25519-keypair --file /etc/generic-worker/ed25519_key
+- name: generate signing key
+  command: /usr/local/bin/generic-worker new-ed25519-keypair --file /etc/generic-worker/ed25519_key
+  args: 
+      chdir: /etc/generic-worker
+      creates: /etc/generic-worker/ed25519_key
+
+# hosts entry
+# echo 127.0.1.1 taskcluster >> /etc/hosts
+- name: "Build hosts file"
+  lineinfile: dest=/etc/hosts regexp='.*taskcluster$' line="127.0.1.1 taskcluster" state=present
+
+# TODO from TC docs: 
+#     echo '@reboot cd /var/local/generic-worker && PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin /usr/local/bin/generic-worker run --config /etc/generic-worker/config >> /var/log/generic-worker.log 2>&1' | crontab -
+#
+#  why? why not systemd with start-worker?
+
+# place start-worker config using ansible.builtin.template
+- name: place start-worker config
+  ansible.builtin.template:
+    src: start-worker-config.j2
+    dest: /etc/generic-worker/start-worker-config
+    mode: '0640'
+    owner: root
+    group: slurm
+  become: true
+
+# place systemd unit file
+- name: place systemd unit file
+  ansible.builtin.template:
+    src: start-worker.service.j2
+    dest: '/etc/systemd/system/start-worker.service'
+    mode: '0755'
+    owner: root
+    group: root
+  become: true
+
+# enable systemd unit file
+- name: enable and start the service
+  # ansible.builtin.systemd_service soon
+  systemd:
+    name: start-worker
+    state: started
+    enabled: true
+    daemon_reload: true
+
+# TODO: add these to the ansible code
+
+### additional things done by bhearsum
+#
+# Added maxTaskRunTime to /etc/generic-worker/start-worker-config
+#
+# apt build-dep coreutils
+#
+# sudo add-apt-repository ppa:paride/coreutils-backports
+#
+# sudo apt install coreutils to get 8.32
+#
+# apt install python3-pip
+#
+# pip3 install zstandard
+#
+# apt install libbz2-dev libffi-dev liblzma-dev
+#
+# wget https://www.python.org/ftp/python/3.11.9/Python-3.11.9.tgz
+# tar -zvxf Python-3.11.9.tgz
+# cd Python-3.11.9
+# ./configure --enable-optimizations
+# make -j56
+# make install # it went to /usr/local
+#
+# /usr/local/bin/pip3 install zstandard
+#
+# apt install zstd
+#
+# add-apt-repository -u "deb bionic-backports main restricted universe multiverse"

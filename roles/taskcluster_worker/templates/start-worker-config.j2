@@ -1,0 +1,34 @@
+cacheOverRestarts: true
+getSecrets: false
+provider:
+    providerType: standalone
+    rootURL: "https://firefox-ci-tc.services.mozilla.com"
+    clientID: "{{ taskcluster_worker_client_id }}"
+    accessToken: "{{ taskcluster_worker_access_token }}"
+    workerPoolID: "{{ taskcluster_worker_worker_group }}/{{ taskcluster_worker_worker_type }}"
+    workerGroup: "snakepit"
+    workerID: "{{ ansible_hostname }}"
+worker:
+    implementation: generic-worker
+    path: /usr/local/bin/generic-worker
+    configPath: {{ taskcluster_worker_root_dir }}/generic-worker.config
+workerConfig:
+    cachesDir:                        "{{ taskcluster_worker_caches_dir }}"
+    certificate:                      ""
+    checkForNewDeploymentEverySecs:   0
+    cleanUpTaskDirs:                  true
+    ed25519SigningKeyLocation:        "{{ taskcluster_worker_ed25519_signing_key }}"
+    idleTimeoutSecs:                  345600
+    livelogExecutable:                "/usr/local/bin/livelog"
+    numberOfTasksToRun:               0  # 0 means run forever?
+    provisionerId:                    "{{ taskcluster_worker_worker_group }}"
+    requiredDiskSpaceMegabytes:       10240
+    sentryProject:                    "generic-worker"
+    shutdownMachineOnIdle:            false
+    shutdownMachineOnInternalError:   false
+    taskclusterProxyExecutable:       "/usr/local/bin/taskcluster-proxy"
+    taskclusterProxyPort:             8080
+    tasksDir:                         "{{ taskcluster_worker_tasks_dir }}"
+    workerType:                       "{{ taskcluster_worker_worker_type }}"
+    wstAudience:                      "firefoxcitc"
+    wstServerURL:                     "https://firefoxci-websocktunnel.services.mozilla.com/"

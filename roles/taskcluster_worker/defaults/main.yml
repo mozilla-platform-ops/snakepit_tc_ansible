@@ -1,0 +1,15 @@
+---
+
+taskcluster_worker_disabled: false
+
+# worker_group/worker_type are same as workerPool
+taskcluster_worker_worker_group: 'translations-1'
+taskcluster_worker_worker_type: 'worker_type_goes_here'
+
+taskcluster_worker_client_id: 'releng/generic-worker/snakepit-MODEL'
+taskcluster_worker_access_token: ''  # in vault ideally
+
+taskcluster_worker_root_dir: '/home/slurm/taskcluster/{{ inventory_hostname}}'
+taskcluster_worker_caches_dir: '{{ taskcluster_worker_root_dir }}/caches'
+taskcluster_worker_tasks_dir: '{{ taskcluster_worker_root_dir }}/tasks'
+taskcluster_worker_ed25519_signing_key: '/etc/generic-worker/ed25519_key'
