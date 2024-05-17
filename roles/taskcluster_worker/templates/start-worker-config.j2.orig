@@ -1,5 +1,5 @@
 cacheOverRestarts: true
-getSecrets: false
+getSecrets: false  # pragma: allowlist secret
 provider:
     providerType: standalone
     rootURL: "https://firefox-ci-tc.services.mozilla.com"
