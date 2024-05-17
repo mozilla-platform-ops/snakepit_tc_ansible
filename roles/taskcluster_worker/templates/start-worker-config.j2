@@ -20,6 +20,7 @@ workerConfig:
     ed25519SigningKeyLocation:        "{{ taskcluster_worker_ed25519_signing_key }}"
     idleTimeoutSecs:                  345600
     livelogExecutable:                "/usr/local/bin/livelog"
+    maxTaskRunTime:                   2592000
     numberOfTasksToRun:               0  # 0 means run forever?
     provisionerId:                    "{{ taskcluster_worker_worker_group }}"
     requiredDiskSpaceMegabytes:       10240

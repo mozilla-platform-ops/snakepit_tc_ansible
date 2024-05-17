@@ -121,7 +121,7 @@
 
 ### additional things done by bhearsum
 #
-# Added maxTaskRunTime to /etc/generic-worker/start-worker-config
+# DONE: Added maxTaskRunTime to /etc/generic-worker/start-worker-config
 #
 # apt build-dep coreutils
 #
