@@ -1,5 +1,5 @@
 ---
-taskcluster_worker_worker_type: 'snakepit-2080ti'
-taskcluster_worker_client_id: 'project/releng/generic-worker/snakepit-2080ti'
+taskcluster_worker_worker_type: snakepit-2080ti
+taskcluster_worker_client_id: project/releng/generic-worker/snakepit-2080ti
 # from the secrets.yml file
-taskcluster_worker_access_token: '{{ 2080_token }}'
+taskcluster_worker_access_token: "{{ 2080_token }}"

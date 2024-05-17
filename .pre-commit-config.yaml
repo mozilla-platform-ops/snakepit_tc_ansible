@@ -1,18 +1,29 @@
+---
 # .pre-commit-config.yaml
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
     hooks:
-    -   id: check-yaml
-    -   id: end-of-file-fixer
-    -   id: trailing-whitespace
--   repo: https://github.com/psf/black
-    rev: 22.10.0
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
     hooks:
-    -   id: black
--   repo: https://github.com/Yelp/detect-secrets
+      - id: black
+  - repo: https://github.com/Yelp/detect-secrets
     rev: v1.5.0
     hooks:
-    -   id: detect-secrets
-        args: ['--baseline', '.secrets.baseline']
+      - id: detect-secrets
+        args: [--baseline, .secrets.baseline]
         exclude: package.lock.json
+  - repo: https://github.com/ansible/ansible-lint.git
+    rev: v24.5.0
+    hooks:
+      - id: ansible-lint
+        files: \.(yaml|yml)$
+        name: Ansible Lint
+        description: Run configurations on .ansible-lint file
+        verbose: true
+        # args: [-p, ./ansible/*]
+        args: [--fix, all]

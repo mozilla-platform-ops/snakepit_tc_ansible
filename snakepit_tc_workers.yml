@@ -1,7 +1,8 @@
 ---
-- hosts: workers
-  vars:
-    #blah_disabled: false
+- name: Make Snakepit Workers TC Workers
+  hosts: workers
+  # vars:
+  # blah_disabled: false
   remote_user: root
   # become: true
   # become_user: root

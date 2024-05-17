@@ -1,5 +1,5 @@
 ---
-taskcluster_worker_worker_type: 'snakepit-quadro6k'
-taskcluster_worker_client_id: 'project/releng/generic-worker/snakepit-quadro6k'
+taskcluster_worker_worker_type: snakepit-quadro6k
+taskcluster_worker_client_id: project/releng/generic-worker/snakepit-quadro6k
 # from the secrets.yml file
-taskcluster_worker_access_token: '{{ quadro_token }}'
+taskcluster_worker_access_token: "{{ quadro_token }}"
