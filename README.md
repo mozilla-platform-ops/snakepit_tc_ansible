@@ -4,6 +4,8 @@ Ansible code to deploy Taskcluster to the Snakepit cluster.
 
 See https://mozilla-hub.atlassian.net/wiki/spaces/ROPS/pages/26476594/Berlin+Machine+Learning+Cluster+Snakepit.
 
+Uses Python 3.6 (latest deployed on mlchead). This restricts versions of packages we can use.
+
 ## debugging
 
 ```bash
@@ -22,6 +24,13 @@ ssh root@mlc1-devl.qa.ber3.mozilla.com
 
 ```bash
 # git clone this repo
+
+# we use poetry and virtualenv/requirements.txt
+#   - poetry is nicer for local
+#   - virtualenv is all that's available on mlchead
+# setup poetry
+poetry shell
+poetry install
 
 cd snakepit_tc_ansible
 # place secrets.yml and vault-password file

@@ -1,2 +1,1 @@
-# ansible
-ansible>=9.5.1
+ansible
