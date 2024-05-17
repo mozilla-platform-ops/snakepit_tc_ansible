@@ -1,8 +1,5 @@
 ---
 
-- debug:
-    msg: "Hi there."
-
 - name: include secret vars
   include_vars: secrets.yml
 
