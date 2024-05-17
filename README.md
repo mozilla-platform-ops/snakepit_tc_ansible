@@ -1,5 +1,9 @@
 # snakepit_tc_ansible
 
+Ansible code to deploy Taskcluster to the Snakepit cluster.
+
+See https://mozilla-hub.atlassian.net/wiki/spaces/ROPS/pages/26476594/Berlin+Machine+Learning+Cluster+Snakepit.
+
 ## debugging
 
 ```bash
