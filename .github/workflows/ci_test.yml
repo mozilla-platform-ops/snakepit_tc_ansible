@@ -30,7 +30,7 @@ jobs:
         poetry install
     - name: Run pre-commit
       run: |
-        pre-commit run -av
+        poetry run pre-commit run -av
     # - name: Verify executables run
     #   run: |
     #     poetry run tests/test_executable_help.py
