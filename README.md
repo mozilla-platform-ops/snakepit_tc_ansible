@@ -4,8 +4,6 @@ Ansible code to deploy Taskcluster to the Snakepit cluster.
 
 See https://mozilla-hub.atlassian.net/wiki/spaces/ROPS/pages/26476594/Berlin+Machine+Learning+Cluster+Snakepit.
 
-Uses Python 3.6 (latest deployed on mlchead). This restricts versions of packages we can use.
-
 ## debugging
 
 ```bash
